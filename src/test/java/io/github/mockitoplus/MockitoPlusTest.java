@@ -10,12 +10,11 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static io.github.mockitoplus.MockitoPlus.when;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static io.github.mockitoplus.FailureMode.FAIL_ALTERNATING_INVOCATIONS;
 import static io.github.mockitoplus.FailureMode.INTERMITTENT_FAILURES;
 import static io.github.mockitoplus.FailureMode.FIRST_INVOCATION_FAILS;
+import static io.github.mockitoplus.MockitoPlus.when;
 
 public class MockitoPlusTest {
     @Test
@@ -27,7 +26,7 @@ public class MockitoPlusTest {
         final int numIterations = 5;
 
         for (int i = 0; i < numIterations; i++) {
-            assertEquals("abc123", hello.sayHello("whatever"));
+            assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
         }
 
         verify(hello, times(numIterations)).sayHello(any());
@@ -41,13 +40,13 @@ public class MockitoPlusTest {
                 .thenReturn("abc123", FAIL_ALTERNATING_INVOCATIONS);
 
         // first invocation: success
-        assertEquals("abc123", hello.sayHello("whatever"));
+        assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
 
         // second invocation: failure
         assertFailure( () -> hello.sayHello("whatever"));
 
         // third invocation: success
-        assertEquals("abc123", hello.sayHello("whatever"));
+        assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
 
         // fourth invocation: failure
         assertFailure( () -> hello.sayHello("whatever"));
