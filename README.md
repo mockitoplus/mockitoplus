@@ -1,5 +1,5 @@
 # mockitoplus
-Mockito Plus library
+MockitoPlus Java library
 
 # Example
 
