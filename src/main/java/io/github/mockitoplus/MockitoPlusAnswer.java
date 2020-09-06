@@ -9,14 +9,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class MockitoPlusAnswer implements Answer {
     private final Object value;
-    private final Exception exception;
+    private final ExceptionFactory exceptionFactory;
     private final FailureMode failureMode;
     private final AtomicInteger invocationCount = new AtomicInteger(0);
     private final Random random = new SecureRandom();
 
-    public MockitoPlusAnswer(Object value, Exception exception, FailureMode failureMode) {
+    public MockitoPlusAnswer(Object value, FailureMode failureMode, ExceptionFactory exFactory) {
         this.value = value;
-        this.exception = exception;
+        this.exceptionFactory = exFactory;
         this.failureMode = failureMode;
     }
 
@@ -48,6 +48,6 @@ public class MockitoPlusAnswer implements Answer {
     }
 
     private void onFailure(InvocationOnMock handler) throws Exception {
-        throw exception;
+        throw exceptionFactory.createException();
     }
 }

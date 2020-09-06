@@ -9,20 +9,24 @@ public class MockitoPlusStubbing<T> {
         this.stubbing = stubbing;
     }
 
-    public void thenReturn(final Object value) {
-        this.stubbing.thenReturn(value);
-    }
-
     public void thenThrow(final Exception exception) {
         this.stubbing.thenThrow(exception);
     }
 
-    public void thenReturn(final Object value, final FailureMode failureMode) {
-        thenReturn(value, makeDefaultException(), failureMode);
+    public void thenReturn(final Object value) {
+        this.stubbing.thenReturn(value);
     }
 
-    private void thenReturn(final Object value, Exception exception, final FailureMode failureMode) {
-        this.stubbing.thenAnswer(new MockitoPlusAnswer(value, exception, failureMode));
+    public void thenReturn(final Object value, final FailureMode failureMode) {
+        this.thenReturn(value,
+                failureMode,
+                () -> makeDefaultException());
+    }
+
+    public void thenReturn(final Object value,
+                           final FailureMode failureMode,
+                           final ExceptionFactory factory) {
+        this.stubbing.thenAnswer(new MockitoPlusAnswer(value, failureMode, factory));
     }
 
     static private Exception makeDefaultException() {
