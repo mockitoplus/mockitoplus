@@ -55,6 +55,30 @@ public class MockitoPlusTest {
     }
 
     @Test
+    public void failAlternatingInvocations_withCustomException() {
+        HelloWorld hello = mock(HelloWorld.class);
+
+        when(hello.sayHello(any()))
+                .thenReturn("abc123",
+                            FAIL_ALTERNATING_INVOCATIONS,
+                            () -> createCustomException());
+
+        // first invocation: success
+        assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
+
+        // second invocation: failure
+        assertFailureWithCustomException( () -> hello.sayHello("whatever"));
+
+        // third invocation: success
+        assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
+
+        // fourth invocation: failure
+        assertFailureWithCustomException( () -> hello.sayHello("whatever"));
+
+        verify(hello, times(4)).sayHello(any());
+    }
+
+    @Test
     public void firstInvocationFails() {
         HelloWorld hello = mock(HelloWorld.class);
 
@@ -104,6 +128,22 @@ public class MockitoPlusTest {
         assertThatCode(() -> callable.call())
                 .isInstanceOf(GenericException.class)
                 .hasMessage("generic exception");
+    }
+
+    private static void assertFailureWithCustomException(final Callable callable) {
+        assertThatCode(() -> callable.call())
+                .isInstanceOf(CustomException.class)
+                .hasMessage("Things happen");
+    }
+
+    private static Exception createCustomException() {
+      return new CustomException("Things happen");
+    }
+
+    private static class CustomException extends RuntimeException {
+        public CustomException(String msg) {
+            super(msg);
+        }
     }
 }
 
