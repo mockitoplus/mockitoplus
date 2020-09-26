@@ -34,3 +34,13 @@ output/
 .idea/
 
 target/
+
+# Gradle & builds
+build
+build-cache
+target
+out
+.gradle
+classes
+.gradletasknamecache
+*.log
