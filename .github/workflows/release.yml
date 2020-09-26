@@ -1,0 +1,21 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v2
+    - name: Gradle wrapper validation
+      uses: gradle/wrapper-validation-action@v1
+    - name: Set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 8
+    - name: print Java version
+      run: java -version
+    - name: Gradle ciPerformRelease
+      run: ./gradlew build -s && ./gradlew ciPerformRelease -s
