@@ -30,7 +30,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
     - name: Build
-      run: mvn --no-transfer-progress -B clean package
+      run: ./gradlew clean build
 
   automerge:
     runs-on: [ubuntu-latest]
