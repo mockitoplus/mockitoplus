@@ -13,17 +13,17 @@ public class MockitoPlusStubbing<T> {
         this.stubbing.thenThrow(exception);
     }
 
-    public void thenReturn(final Object value) {
+    public void thenReturn(final T value) {
         this.stubbing.thenReturn(value);
     }
 
-    public void thenReturn(final Object value, final FailureMode failureMode) {
+    public void thenReturn(final T value, final FailureMode failureMode) {
         this.thenReturn(value,
                 failureMode,
                 () -> makeDefaultException());
     }
 
-    public void thenReturn(final Object value,
+    public void thenReturn(final T value,
                            final FailureMode failureMode,
                            final ExceptionFactory factory) {
         this.stubbing.thenAnswer(new MockitoPlusAnswer(value, failureMode, factory));
