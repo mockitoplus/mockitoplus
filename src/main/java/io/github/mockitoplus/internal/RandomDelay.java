@@ -18,7 +18,6 @@ public class RandomDelay implements DelayCalculator {
     @Override
     public Duration calculateDelay() {
         final long n = longIterator.next();
-        System.out.println(n + " millis");
         return Duration.of(n, MILLIS);
     }
 }
