@@ -63,7 +63,7 @@ when(hello.sayHello(any()))
 import static org.mockito.Mockito.mock;
 import static io.github.mockitoplus.MockitoPlus.when;
 
-Duration max = Duration.of(2, SECONDS);
+Duration max = Duration.of(5, SECONDS);
 
 HelloWorld hello = mock(HelloWorld.class);
 
