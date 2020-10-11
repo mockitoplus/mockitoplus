@@ -3,8 +3,11 @@ package io.github.mockitoplus;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Duration;
 import java.util.concurrent.Callable;
 
+import static java.time.temporal.ChronoUnit.MILLIS;
+import static java.time.temporal.ChronoUnit.SECONDS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.mockito.Mockito.mock;
@@ -102,6 +105,71 @@ public class MockitoPlusTest {
           } catch (Exception ex) {
               failureCount++;
           }
+        }
+
+        assertThat(successCount).isGreaterThanOrEqualTo(0);
+        assertThat(failureCount).isGreaterThanOrEqualTo(0);
+        assertThat(successCount + failureCount).isEqualTo(numIterations);
+    }
+
+    @Test
+    public void intermittentFailuresWithFixedDelay() {
+        HelloWorld hello = mock(HelloWorld.class);
+
+        final Duration delay = Duration.of(7, MILLIS);
+
+        when(hello.sayHello(any()))
+                .thenReturn("abc123", INTERMITTENT_FAILURES)
+                .withFixedDelay(delay);
+
+        final int numIterations = 10;
+
+        int successCount = 0;
+        int failureCount = 0;
+
+
+        for (int i = 0; i < numIterations; i++) {
+            final long start = System.currentTimeMillis();
+            try {
+                hello.sayHello("whatever");
+                successCount++;
+            } catch (Exception ex) {
+                failureCount++;
+            } finally {
+                final long end = System.currentTimeMillis();
+                assertThat(end - start)
+                        .isGreaterThanOrEqualTo(delay.toMillis());
+            }
+        }
+
+        assertThat(successCount).isGreaterThanOrEqualTo(0);
+        assertThat(failureCount).isGreaterThanOrEqualTo(0);
+        assertThat(successCount + failureCount).isEqualTo(numIterations);
+    }
+
+    @Test
+    public void intermittentFailuresWithRandomDelay() {
+        HelloWorld hello = mock(HelloWorld.class);
+
+        final Duration max = Duration.of(15, MILLIS);
+
+        when(hello.sayHello(any()))
+                .thenReturn("abc123", INTERMITTENT_FAILURES)
+                .withRandomDelay(max);
+
+        final int numIterations = 10;
+
+        int successCount = 0;
+        int failureCount = 0;
+
+
+        for (int i = 0; i < numIterations; i++) {
+            try {
+                hello.sayHello("whatever");
+                successCount++;
+            } catch (Exception ex) {
+                failureCount++;
+            }
         }
 
         assertThat(successCount).isGreaterThanOrEqualTo(0);
