@@ -43,7 +43,7 @@ when(hello.sayHello(any()))
 
 ```
 
-# Example: withException
+# Example: exception
 
 ```
 import static org.mockito.Mockito.mock;
@@ -54,7 +54,7 @@ HelloWorld hello = mock(HelloWorld.class);
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
           .intermittentFailures()
-          .withException(() -> new IllegalStateException("sorry"));
+          .exception(() -> new IllegalStateException("sorry"));
 
 ```
 
