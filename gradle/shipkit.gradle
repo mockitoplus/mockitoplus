@@ -7,9 +7,9 @@
 shipkit {
     gitHub.repository = "mockitoplus/mockitoplus"
 
-    gitHub.readOnlyAuthToken = System.getenv("GITHUB_TOKEN")
+    gitHub.readOnlyAuthToken = System.getenv("GITHUB_TOKEN") ?: "none"
 
-    gitHub.writeAuthToken = System.getenv("GITHUB_TOKEN")
+    gitHub.writeAuthToken = System.getenv("GITHUB_TOKEN") ?: "none"
 }
 
 allprojects {
