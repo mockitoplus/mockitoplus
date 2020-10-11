@@ -12,23 +12,28 @@ import io.github.mockitoplus.internal.RandomDelay;
 
 public class MockitoPlusStubbing<T> {
     private final AtomicReference<DelayCalculator> delayCalc = new AtomicReference<DelayCalculator>(FixedDelay.ZERO);
+    private final AtomicReference<FailureMode> failureMode = new AtomicReference<FailureMode>(FailureMode.NEVER_FAIL);
     private OngoingStubbing<T> stubbing;
 
     public MockitoPlusStubbing(final OngoingStubbing<T> stubbing) {
         this.stubbing = stubbing;
     }
 
-    public MockitoPlusStubbing<T> thenReturn(final T value, final FailureMode failureMode) {
+    public MockitoPlusStubbing<T> thenReturn(final T value) {
         this.thenReturn(value,
-                failureMode,
                 () -> makeDefaultException());
         return this;
     }
 
     public MockitoPlusStubbing<T> thenReturn(final T value,
-                           final FailureMode failureMode,
-                           final ExceptionFactory factory) {
+                                             final ExceptionFactory factory) {
+
         this.stubbing.thenAnswer(new MockitoPlusAnswer(value, failureMode, factory, delayCalc));
+        return this;
+    }
+
+    public MockitoPlusStubbing<T> withFailureMode(final FailureMode mode) {
+        failureMode.set(mode);
         return this;
     }
 

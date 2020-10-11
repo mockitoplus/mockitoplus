@@ -24,7 +24,8 @@ public class MockitoPlusTest {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
-                .thenReturn("abc123", FAIL_ALTERNATING_INVOCATIONS);
+                .thenReturn("abc123")
+                .withFailureMode(FAIL_ALTERNATING_INVOCATIONS);
 
         // first invocation: success
         assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
@@ -47,8 +48,8 @@ public class MockitoPlusTest {
 
         when(hello.sayHello(any()))
                 .thenReturn("abc123",
-                            FAIL_ALTERNATING_INVOCATIONS,
-                            () -> createCustomException());
+                            () -> createCustomException())
+                .withFailureMode(FAIL_ALTERNATING_INVOCATIONS);
 
         // first invocation: success
         assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
@@ -70,7 +71,8 @@ public class MockitoPlusTest {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
-                .thenReturn("abc123", FIRST_INVOCATION_FAILS);
+                .thenReturn("abc123")
+                .withFailureMode(FIRST_INVOCATION_FAILS);
 
         // first invocation: failure
         assertFailure(() -> hello.sayHello("This should throw an exception"));
@@ -90,7 +92,8 @@ public class MockitoPlusTest {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
-                .thenReturn("abc123", INTERMITTENT_FAILURES);
+                .thenReturn("abc123")
+                .withFailureMode(INTERMITTENT_FAILURES);
 
         final int numIterations = 100;
 
@@ -118,7 +121,8 @@ public class MockitoPlusTest {
         final Duration delay = Duration.of(7, MILLIS);
 
         when(hello.sayHello(any()))
-                .thenReturn("abc123", INTERMITTENT_FAILURES)
+                .thenReturn("abc123")
+                .withFailureMode(INTERMITTENT_FAILURES)
                 .withFixedDelay(delay);
 
         final int numIterations = 10;
@@ -153,7 +157,8 @@ public class MockitoPlusTest {
         final Duration max = Duration.of(15, MILLIS);
 
         when(hello.sayHello(any()))
-                .thenReturn("abc123", INTERMITTENT_FAILURES)
+                .thenReturn("abc123")
+                .withFailureMode(INTERMITTENT_FAILURES)
                 .withRandomDelay(max);
 
         final int numIterations = 10;
