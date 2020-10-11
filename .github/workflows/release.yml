@@ -14,11 +14,11 @@ jobs:
       with:
         java-version: 8
     - name: print Java version
-      run: java -version
+      run:  java -version
     - name: Branch name
       run:  echo running on branch ${GITHUB_REF##*/}
     - name: Gradle ciPerformRelease
-      run: ./gradlew build -s && ./gradlew ciPerformRelease -s
+      run:  ./gradlew build -s && ./gradlew ciPerformRelease -s
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TRAVIS_BRANCH: ${GITHUB_REF##*/}
