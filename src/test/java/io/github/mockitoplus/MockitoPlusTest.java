@@ -13,9 +13,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.ArgumentMatchers.any;
-import static io.github.mockitoplus.FailureMode.FAIL_ALTERNATING_INVOCATIONS;
-import static io.github.mockitoplus.FailureMode.INTERMITTENT_FAILURES;
-import static io.github.mockitoplus.FailureMode.FIRST_INVOCATION_FAILS;
 import static io.github.mockitoplus.MockitoPlus.when;
 
 public class MockitoPlusTest {
@@ -25,7 +22,7 @@ public class MockitoPlusTest {
 
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
-                .withFailureMode(FAIL_ALTERNATING_INVOCATIONS);
+                .failAlternatingInvocations();
 
         // first invocation: success
         assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
@@ -49,7 +46,7 @@ public class MockitoPlusTest {
         when(hello.sayHello(any()))
                 .thenReturn("abc123",
                             () -> createCustomException())
-                .withFailureMode(FAIL_ALTERNATING_INVOCATIONS);
+                .failAlternatingInvocations();
 
         // first invocation: success
         assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
@@ -72,7 +69,7 @@ public class MockitoPlusTest {
 
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
-                .withFailureMode(FIRST_INVOCATION_FAILS);
+                .firstInvocationFails();
 
         // first invocation: failure
         assertFailure(() -> hello.sayHello("This should throw an exception"));
@@ -93,7 +90,7 @@ public class MockitoPlusTest {
 
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
-                .withFailureMode(INTERMITTENT_FAILURES);
+                .intermittentFailures();
 
         final int numIterations = 100;
 
@@ -122,7 +119,7 @@ public class MockitoPlusTest {
 
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
-                .withFailureMode(INTERMITTENT_FAILURES)
+                .intermittentFailures()
                 .withFixedDelay(delay);
 
         final int numIterations = 10;
@@ -158,7 +155,7 @@ public class MockitoPlusTest {
 
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
-                .withFailureMode(INTERMITTENT_FAILURES)
+                .intermittentFailures()
                 .withRandomDelay(max);
 
         final int numIterations = 10;

@@ -32,7 +32,19 @@ public class MockitoPlusStubbing<T> {
         return this;
     }
 
-    public MockitoPlusStubbing<T> withFailureMode(final FailureMode mode) {
+    public MockitoPlusStubbing<T> firstInvocationFails() {
+        return withFailureMode(FailureMode.FIRST_INVOCATION_FAILS);
+    }
+
+    public MockitoPlusStubbing<T> failAlternatingInvocations() {
+        return withFailureMode(FailureMode.FAIL_ALTERNATING_INVOCATIONS);
+    }
+
+    public MockitoPlusStubbing<T> intermittentFailures() {
+        return withFailureMode(FailureMode.INTERMITTENT_FAILURES);
+    }
+
+    private MockitoPlusStubbing<T> withFailureMode(final FailureMode mode) {
         failureMode.set(mode);
         return this;
     }
