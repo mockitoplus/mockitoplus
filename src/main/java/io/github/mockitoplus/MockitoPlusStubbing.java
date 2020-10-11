@@ -10,6 +10,7 @@ import io.github.mockitoplus.internal.DelayCalculator;
 import io.github.mockitoplus.internal.FailureMode;
 import io.github.mockitoplus.internal.FixedDelay;
 import io.github.mockitoplus.internal.GenericException;
+import io.github.mockitoplus.internal.MockitoPlusAnswer;
 import io.github.mockitoplus.internal.RandomDelay;
 
 public class MockitoPlusStubbing<T> {
