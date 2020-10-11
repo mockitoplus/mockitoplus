@@ -3,9 +3,9 @@ package io.github.mockitoplus;
 import org.mockito.stubbing.OngoingStubbing;
 
 public class MockitoPlusStubbing<T> {
-    private OngoingStubbing stubbing;
+    private OngoingStubbing<T> stubbing;
 
-    public MockitoPlusStubbing(final OngoingStubbing stubbing) {
+    public MockitoPlusStubbing(final OngoingStubbing<T> stubbing) {
         this.stubbing = stubbing;
     }
 
