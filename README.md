@@ -57,7 +57,7 @@ when(hello.sayHello(any()))
 
 ```
 
-# Example:  withRandomDelay
+# Example:  randomDelay
 
 ```
 import static org.mockito.Mockito.mock;
