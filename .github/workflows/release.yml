@@ -24,3 +24,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TRAVIS_BRANCH: master
+        BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
