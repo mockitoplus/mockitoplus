@@ -4,7 +4,10 @@ MockitoPlus Java library
 # Example: failAlternatingInvocations
 
 ```
+import static org.mockito.Mockito.mock;
 import static io.github.mockitoplus.MockitoPlus.when;
+
+HelloWorld hello = mock(HelloWorld.class);
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
@@ -15,7 +18,10 @@ when(hello.sayHello(any()))
 # Example: firstInvocationFails
 
 ```
+import static org.mockito.Mockito.mock;
 import static io.github.mockitoplus.MockitoPlus.when;
+
+HelloWorld hello = mock(HelloWorld.class);
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
@@ -26,7 +32,10 @@ when(hello.sayHello(any()))
 # Example: intermittentFailures
 
 ```
+import static org.mockito.Mockito.mock;
 import static io.github.mockitoplus.MockitoPlus.when;
+
+HelloWorld hello = mock(HelloWorld.class);
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
@@ -37,7 +46,10 @@ when(hello.sayHello(any()))
 # Example:  withFixedDelay
 
 ```
+import static org.mockito.Mockito.mock;
 import static io.github.mockitoplus.MockitoPlus.when;
+
+HelloWorld hello = mock(HelloWorld.class);
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
@@ -48,9 +60,12 @@ when(hello.sayHello(any()))
 # Example:  withRandomDelay
 
 ```
+import static org.mockito.Mockito.mock;
 import static io.github.mockitoplus.MockitoPlus.when;
 
 Duration max = Duration.of(2, SECONDS);
+
+HelloWorld hello = mock(HelloWorld.class);
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
