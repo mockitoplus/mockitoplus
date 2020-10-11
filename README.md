@@ -43,7 +43,7 @@ when(hello.sayHello(any()))
 
 ```
 
-# Example:  withFixedDelay
+# Example:  fixedDelay
 
 ```
 import static org.mockito.Mockito.mock;
@@ -53,7 +53,7 @@ HelloWorld hello = mock(HelloWorld.class);
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
-          .withFixedDelay(Duration.of(100, MILLIS));
+          .fixedDelay(Duration.of(100, MILLIS));
 
 ```
 
@@ -69,6 +69,6 @@ HelloWorld hello = mock(HelloWorld.class);
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
-          .withRandomDelay(max);
+          .randomDelay(max);
 
 ```

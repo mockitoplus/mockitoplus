@@ -51,12 +51,12 @@ public class MockitoPlusStubbing<T> {
         return this;
     }
 
-    public MockitoPlusStubbing<T> withFixedDelay(final Duration duration) {
+    public MockitoPlusStubbing<T> fixedDelay(final Duration duration) {
         delayCalc.set(FixedDelay.of(duration));
         return this;
     }
 
-    public MockitoPlusStubbing<T> withRandomDelay(final Duration maxDelay) {
+    public MockitoPlusStubbing<T> randomDelay(final Duration maxDelay) {
         delayCalc.set(new RandomDelay(new SecureRandom(), maxDelay));
         return this;
     }

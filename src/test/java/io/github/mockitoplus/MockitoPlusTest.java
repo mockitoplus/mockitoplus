@@ -122,7 +122,7 @@ public class MockitoPlusTest {
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
                 .intermittentFailures()
-                .withFixedDelay(delay);
+                .fixedDelay(delay);
 
         final int numIterations = 10;
 
@@ -158,7 +158,7 @@ public class MockitoPlusTest {
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
                 .intermittentFailures()
-                .withRandomDelay(max);
+                .randomDelay(max);
 
         final int numIterations = 10;
 
