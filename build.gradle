@@ -26,7 +26,6 @@ dependencies {
 }
 
 group = 'io.github.mockitoplus'
-version = '0.0.1-SNAPSHOT'
 description = 'mockitoplus'
 
 publishing {
