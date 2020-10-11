@@ -1,6 +1,13 @@
 name: Release
 
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - '.github/**'
+      - 'docs/**'
+      - 'README.md'
 
 jobs:
   release:
