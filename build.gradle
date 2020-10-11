@@ -24,6 +24,7 @@ group = 'io.github.mockitoplus'
 version = '0.0.1-SNAPSHOT'
 description = 'mockitoplus'
 sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 
 publishing {
     publications {
