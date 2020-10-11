@@ -17,3 +17,5 @@ jobs:
       run: java -version
     - name: Gradle ciPerformRelease
       run: ./gradlew build -s && ./gradlew ciPerformRelease -s
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
