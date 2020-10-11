@@ -9,14 +9,6 @@ public class MockitoPlusStubbing<T> {
         this.stubbing = stubbing;
     }
 
-    public void thenThrow(final Exception exception) {
-        this.stubbing.thenThrow(exception);
-    }
-
-    public void thenReturn(final T value) {
-        this.stubbing.thenReturn(value);
-    }
-
     public void thenReturn(final T value, final FailureMode failureMode) {
         this.thenReturn(value,
                 failureMode,

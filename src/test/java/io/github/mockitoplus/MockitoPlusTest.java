@@ -18,21 +18,6 @@ import static io.github.mockitoplus.MockitoPlus.when;
 
 public class MockitoPlusTest {
     @Test
-    public void happyPath() {
-        HelloWorld hello = mock(HelloWorld.class);
-
-        when(hello.sayHello(any())).thenReturn("abc123");
-
-        final int numIterations = 5;
-
-        for (int i = 0; i < numIterations; i++) {
-            assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
-        }
-
-        verify(hello, times(numIterations)).sayHello(any());
-    }
-
-    @Test
     public void failAlternatingInvocations() {
         HelloWorld hello = mock(HelloWorld.class);
 
