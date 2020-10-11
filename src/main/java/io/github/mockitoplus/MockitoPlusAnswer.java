@@ -13,7 +13,7 @@ import io.github.mockitoplus.internal.FailureMode;
 
 public class MockitoPlusAnswer<T> implements Answer<T> {
     private final T value;
-    private final ExceptionFactory exceptionFactory;
+    private final AtomicReference<ExceptionFactory> exceptionFactory;
     private final AtomicInteger invocationCount = new AtomicInteger(0);
     private final Random random = new SecureRandom();
     private final AtomicReference<FailureMode> failureMode;
@@ -21,7 +21,7 @@ public class MockitoPlusAnswer<T> implements Answer<T> {
 
     public MockitoPlusAnswer(T value,
                              AtomicReference<FailureMode> failureMode,
-                             ExceptionFactory exFactory,
+                             AtomicReference<ExceptionFactory> exFactory,
                              AtomicReference<DelayCalculator> delayCalculator) {
         this.value = value;
         this.exceptionFactory = exFactory;
@@ -60,6 +60,6 @@ public class MockitoPlusAnswer<T> implements Answer<T> {
     }
 
     private void onFailure(final InvocationOnMock handler) throws Exception {
-        throw exceptionFactory.createException();
+        throw exceptionFactory.get().createException();
     }
 }

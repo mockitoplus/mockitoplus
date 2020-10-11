@@ -13,8 +13,16 @@ import io.github.mockitoplus.internal.GenericException;
 import io.github.mockitoplus.internal.RandomDelay;
 
 public class MockitoPlusStubbing<T> {
+    private static ExceptionFactory DEFAULT_EXCEPTION_FACTORY = new ExceptionFactory() {
+        @Override
+        public Exception createException() {
+            return makeDefaultException();
+        }
+    };
+
     private final AtomicReference<DelayCalculator> delayCalc = new AtomicReference<DelayCalculator>(FixedDelay.ZERO);
     private final AtomicReference<FailureMode> failureMode = new AtomicReference<FailureMode>(FailureMode.NEVER_FAIL);
+    private final AtomicReference<ExceptionFactory> exceptionFactory = new AtomicReference<ExceptionFactory>(DEFAULT_EXCEPTION_FACTORY);
     private OngoingStubbing<T> stubbing;
 
     public MockitoPlusStubbing(final OngoingStubbing<T> stubbing) {
@@ -22,15 +30,7 @@ public class MockitoPlusStubbing<T> {
     }
 
     public MockitoPlusStubbing<T> thenReturn(final T value) {
-        this.thenReturn(value,
-                () -> makeDefaultException());
-        return this;
-    }
-
-    public MockitoPlusStubbing<T> thenReturn(final T value,
-                                             final ExceptionFactory factory) {
-
-        this.stubbing.thenAnswer(new MockitoPlusAnswer(value, failureMode, factory, delayCalc));
+        this.stubbing.thenAnswer(new MockitoPlusAnswer(value, failureMode, exceptionFactory, delayCalc));
         return this;
     }
 
@@ -44,6 +44,11 @@ public class MockitoPlusStubbing<T> {
 
     public MockitoPlusStubbing<T> intermittentFailures() {
         return withFailureMode(FailureMode.INTERMITTENT_FAILURES);
+    }
+
+    public MockitoPlusStubbing<T> withException(ExceptionFactory factory) {
+        this.exceptionFactory.set(factory);
+        return this;
     }
 
     private MockitoPlusStubbing<T> withFailureMode(final FailureMode mode) {
@@ -64,4 +69,5 @@ public class MockitoPlusStubbing<T> {
     static private Exception makeDefaultException() {
         return new GenericException();
     }
+
 }
