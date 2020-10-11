@@ -13,17 +13,17 @@ import io.github.mockitoplus.internal.GenericException;
 import io.github.mockitoplus.internal.RandomDelay;
 
 public class MockitoPlusStubbing<T> {
-    private static ExceptionFactory DEFAULT_EXCEPTION_FACTORY = new ExceptionFactory() {
+    private static final ExceptionFactory DEFAULT_EXCEPTION_FACTORY = new ExceptionFactory() {
         @Override
         public Exception createException() {
-            return makeDefaultException();
+            return new GenericException();
         }
     };
 
     private final AtomicReference<DelayCalculator> delayCalc = new AtomicReference<DelayCalculator>(FixedDelay.ZERO);
     private final AtomicReference<FailureMode> failureMode = new AtomicReference<FailureMode>(FailureMode.NEVER_FAIL);
     private final AtomicReference<ExceptionFactory> exceptionFactory = new AtomicReference<ExceptionFactory>(DEFAULT_EXCEPTION_FACTORY);
-    private OngoingStubbing<T> stubbing;
+    private final OngoingStubbing<T> stubbing;
 
     public MockitoPlusStubbing(final OngoingStubbing<T> stubbing) {
         this.stubbing = stubbing;
@@ -64,10 +64,6 @@ public class MockitoPlusStubbing<T> {
     public MockitoPlusStubbing<T> randomDelay(final Duration maxDelay) {
         delayCalc.set(new RandomDelay(new SecureRandom(), maxDelay));
         return this;
-    }
-
-    static private Exception makeDefaultException() {
-        return new GenericException();
     }
 
 }
