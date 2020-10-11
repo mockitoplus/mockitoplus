@@ -18,16 +18,14 @@ allprojects {
         //Bintray configuration is handled by JFrog Bintray Gradle Plugin
         //For reference see the official documentation: https://github.com/bintray/gradle-bintray-plugin
         bintray {
-
+            user = 'sullis'
             key = System.getenv("BINTRAY_API_KEY") ?: "none"
 
             pkg {
-                //TODO configure Bintray settings per your project (https://github.com/bintray/gradle-bintray-plugin)
-                repo = 'mockitoplus'
-                user = 'shipkit-bootstrap-bot'
-                userOrg = 'shipkit-bootstrap'
-                name = 'maven'
-                licenses = ['MIT']
+                repo = 'maven'
+                userOrg = 'mockitoplus'
+                name = 'mockitoplus'
+                licenses = ['Apache-2.0']
                 labels = ['mockito', 'java']
             }
         }
