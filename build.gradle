@@ -11,6 +11,11 @@ repositories {
     }
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 dependencies {
     implementation 'org.mockito:mockito-core:3.5.13'
     testImplementation 'org.assertj:assertj-core:3.17.2'
@@ -23,8 +28,6 @@ dependencies {
 group = 'io.github.mockitoplus'
 version = '0.0.1-SNAPSHOT'
 description = 'mockitoplus'
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
 
 publishing {
     publications {
