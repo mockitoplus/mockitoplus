@@ -43,6 +43,21 @@ when(hello.sayHello(any()))
 
 ```
 
+# Example: withException
+
+```
+import static org.mockito.Mockito.mock;
+import static io.github.mockitoplus.MockitoPlus.when;
+
+HelloWorld hello = mock(HelloWorld.class);
+
+when(hello.sayHello(any()))
+          .thenReturn("bonjour")
+          .intermittentFailures()
+          .withException(() -> new IllegalStateException("sorry"));
+
+```
+
 # Example:  fixedDelay
 
 ```
