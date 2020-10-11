@@ -10,6 +10,8 @@ shipkit {
     gitHub.readOnlyAuthToken = System.getenv("GITHUB_TOKEN")
 
     gitHub.writeAuthToken = System.getenv("GITHUB_TOKEN")
+
+    rev = System.getenv("CI_BRANCH")
 }
 
 allprojects {
