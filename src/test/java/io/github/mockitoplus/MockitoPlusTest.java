@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.time.Duration;
 import java.util.concurrent.Callable;
 
+import io.github.mockitoplus.internal.GenericException;
+
 import static java.time.temporal.ChronoUnit.MILLIS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;

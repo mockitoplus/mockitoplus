@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
 import io.github.mockitoplus.internal.DelayCalculator;
+import io.github.mockitoplus.internal.FailureMode;
 
 public class MockitoPlusAnswer<T> implements Answer<T> {
     private final T value;
