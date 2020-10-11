@@ -1,7 +1,7 @@
 # mockitoplus
 MockitoPlus Java library
 
-# Example
+# Example: FAIL_ALTERNATING_INVOCATIONS
 
 ```
 import static io.github.mockitoplus.FailureMode.FAIL_ALTERNATING_INVOCATIONS;
@@ -9,6 +9,28 @@ import static io.github.mockitoplus.MockitoPlus.when;
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour", FAIL_ALTERNATING_INVOCATIONS);
+
+```
+
+# Example: FIRST_INVOCATION_FAILS
+
+```
+import static io.github.mockitoplus.FailureMode.FIRST_INVOCATION_FAILS;
+import static io.github.mockitoplus.MockitoPlus.when;
+
+when(hello.sayHello(any()))
+          .thenReturn("bonjour", FIRST_INVOCATION_FAILS);
+
+```
+
+# Example: INTERMITTENT_FAILURES
+
+```
+import static io.github.mockitoplus.FailureMode.INTERMITTENT_FAILURES;
+import static io.github.mockitoplus.MockitoPlus.when;
+
+when(hello.sayHello(any()))
+          .thenReturn("bonjour", INTERMITTENT_FAILURES);
 
 ```
 
