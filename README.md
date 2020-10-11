@@ -1,4 +1,5 @@
-# mockitoplus
+# mockitoplus [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.mockitoplus/mockitoplus/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/io.github.mockitoplus/mockitoplus)
+
 MockitoPlus Java library
 
 # Example: failAlternatingInvocations
