@@ -30,6 +30,15 @@ allprojects {
                 name = 'mockitoplus'
                 licenses = ['Apache-2.0']
                 labels = ['mockito', 'java']
+
+                version {
+                    mavenCentralSync {
+                        sync = true
+                        user = System.getenv("SONATYPE_USERNAME") ?: "none"
+                        password = System.getenv("SONATYPE_PASSWORD") ?: "none"
+                        close = '1'
+                    }
+                }
             }
         }
     }
