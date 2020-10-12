@@ -13,4 +13,7 @@ public class FixedDelay {
             }
         };
     }
+
+    private FixedDelay() { /* private */ }
+
 }
