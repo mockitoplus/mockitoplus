@@ -67,4 +67,10 @@ public class MockitoPlusStubbing<T> {
         return this;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("failureMode=" + failureMode.get().name());
+        return sb.toString();
+    }
 }
