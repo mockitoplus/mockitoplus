@@ -46,18 +46,18 @@ public class MockitoPlusTest {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
-                .thenReturn("abc123")
+                .thenReturn("bonjour")
                 .failAlternatingInvocations()
                 .exception((() -> createCustomException()));
 
         // first invocation: success
-        assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
+        assertThat(hello.sayHello("whatever")).isEqualTo("bonjour");
 
         // second invocation: failure
         assertFailureWithCustomException( () -> hello.sayHello("whatever"));
 
         // third invocation: success
-        assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
+        assertThat(hello.sayHello("whatever")).isEqualTo("bonjour");
 
         // fourth invocation: failure
         assertFailureWithCustomException( () -> hello.sayHello("whatever"));
