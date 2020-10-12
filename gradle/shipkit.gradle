@@ -13,6 +13,8 @@ shipkit {
 
     ciManagement.url = "https://github.com/mockitoplus/mockitoplus/actions"
     ciManagement.system = "GitHub Actions"
+
+    team.developers = ['sullis:Sean C. Sullivan']
 }
 
 allprojects {
