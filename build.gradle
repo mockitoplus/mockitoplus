@@ -1,4 +1,5 @@
 plugins {
+    id 'jacoco'
     id 'java'
     id 'maven-publish'
     id "org.shipkit.java" version "2.3.5"
@@ -36,6 +37,14 @@ publishing {
     }
 }
 
+jacoco {
+    toolVersion = "0.8.6"
+}
+
 test {
     useJUnitPlatform()
+}
+
+jacocoTestReport {
+    dependsOn test
 }
