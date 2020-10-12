@@ -7,16 +7,15 @@ import java.security.SecureRandom;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-
 import io.github.mockitoplus.ExceptionFactory;
 
 public class MockitoPlusAnswer<T> implements Answer<T> {
     private final T value;
-    private final AtomicReference<ExceptionFactory> exceptionFactory;
     private final AtomicInteger invocationCount = new AtomicInteger(0);
-    private final Random random = new SecureRandom();
+    private final AtomicReference<ExceptionFactory> exceptionFactory;
     private final AtomicReference<FailureMode> failureMode;
     private final AtomicReference<DelayCalculator> delayCalculator;
+    private final Random random = new SecureRandom();
 
     public MockitoPlusAnswer(T value,
                              AtomicReference<FailureMode> failureMode,
