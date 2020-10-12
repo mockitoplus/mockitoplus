@@ -12,6 +12,7 @@ shipkit {
     gitHub.writeAuthToken = System.getenv("GITHUB_TOKEN") ?: "none"
 
     ciManagement.url = "https://github.com/mockitoplus/mockitoplus/actions"
+    ciManagement.system = "GitHub Actions"
 }
 
 allprojects {
