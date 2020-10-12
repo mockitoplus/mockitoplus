@@ -35,7 +35,7 @@ allprojects {
 
                 version {
                     mavenCentralSync {
-                        sync = true
+                        sync = false
                         user = System.getenv("SONATYPE_USERNAME") ?: "none"
                         password = System.getenv("SONATYPE_PASSWORD") ?: "none"
                         close = '1'
