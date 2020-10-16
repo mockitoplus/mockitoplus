@@ -87,6 +87,23 @@ public class MockitoPlusTest {
     }
 
     @Test
+    public void failAllInvocations() {
+        HelloWorld hello = mock(HelloWorld.class);
+
+        when(hello.sayHello(any()))
+                .thenReturn("abc123")
+                .failAllInvocations();
+
+        final int numOfInvocations = 10;
+
+        for (int i = 0; i < numOfInvocations; i++) {
+            assertFailure(() -> hello.sayHello("This should throw an exception"));
+        }
+
+        verify(hello, times(numOfInvocations)).sayHello(any());
+    }
+
+    @Test
     public void intermittentFailures() {
         HelloWorld hello = mock(HelloWorld.class);
 

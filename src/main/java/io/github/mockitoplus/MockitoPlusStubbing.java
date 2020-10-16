@@ -46,6 +46,10 @@ public class MockitoPlusStubbing<T> {
         return failureMode(FailureMode.INTERMITTENT_FAILURES);
     }
 
+    public MockitoPlusStubbing<T> failAllInvocations() {
+        return failureMode(FailureMode.FAIL_ALL_INVOCATIONS);
+    }
+
     public MockitoPlusStubbing<T> exception(final ExceptionFactory factory) {
         this.exceptionFactory.set(factory);
         return this;

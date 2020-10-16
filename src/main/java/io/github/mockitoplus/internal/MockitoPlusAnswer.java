@@ -50,6 +50,8 @@ public class MockitoPlusAnswer<T> implements Answer<T> {
             } else {
                 onFailure(invocation);
             }
+        } else if (failureMode.get() == FailureMode.FAIL_ALL_INVOCATIONS) {
+            onFailure(invocation);
         } else if (failureMode.get() == FailureMode.NEVER_FAIL) {
             return value;
         } else {
