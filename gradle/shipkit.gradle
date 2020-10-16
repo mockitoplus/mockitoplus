@@ -23,7 +23,7 @@ allprojects {
         //Bintray configuration is handled by JFrog Bintray Gradle Plugin
         //For reference see the official documentation: https://github.com/bintray/gradle-bintray-plugin
         bintray {
-            user = 'sullis'
+            user = System.getenv("BINTRAY_USERNAME") ?: "none"
             key = System.getenv("BINTRAY_API_KEY") ?: "none"
 
             pkg {
