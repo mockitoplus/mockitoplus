@@ -2,6 +2,17 @@
 
 MockitoPlus Java library
 
+# Usage
+
+```
+<dependency>
+    <groupId>io.github.mockitoplus</groupId>
+    <artifactId>mockitoplus</artifactId>
+    <version>USE-LATEST-VERSION</version>
+</dependency>
+
+```
+
 # Example: failAlternatingInvocations
 
 ```
