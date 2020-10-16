@@ -87,12 +87,12 @@ public class MockitoPlusTest {
     }
 
     @Test
-    public void failAllInvocations() {
+    public void failEveryInvocation() {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
-                .failAllInvocations();
+                .failEveryInvocation();
 
         final int numOfInvocations = 10;
 
