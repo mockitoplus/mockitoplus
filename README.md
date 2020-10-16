@@ -44,6 +44,19 @@ when(hello.sayHello(any()))
 
 ```
 
+# Example: failEveryInvocation
+
+```
+import static org.mockito.Mockito.mock;
+import static io.github.mockitoplus.MockitoPlus.when;
+
+HelloWorld hello = mock(HelloWorld.class);
+
+when(hello.sayHello(any()))
+          .failEveryInvocation();
+
+```
+
 # Example: exception
 
 ```
