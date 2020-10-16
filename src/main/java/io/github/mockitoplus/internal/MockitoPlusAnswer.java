@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import io.github.mockitoplus.ExceptionFactory;
+import io.github.mockitoplus.FailureMode;
 
 public class MockitoPlusAnswer<T> implements Answer<T> {
     private final T value;

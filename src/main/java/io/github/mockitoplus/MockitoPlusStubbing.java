@@ -7,7 +7,6 @@ import java.time.Duration;
 import java.util.concurrent.atomic.AtomicReference;
 
 import io.github.mockitoplus.internal.DelayCalculator;
-import io.github.mockitoplus.internal.FailureMode;
 import io.github.mockitoplus.internal.FixedDelay;
 import io.github.mockitoplus.internal.GenericException;
 import io.github.mockitoplus.internal.MockitoPlusAnswer;
@@ -36,15 +35,15 @@ public class MockitoPlusStubbing<T> {
     }
 
     public MockitoPlusStubbing<T> firstInvocationFails() {
-        return withFailureMode(FailureMode.FIRST_INVOCATION_FAILS);
+        return failureMode(FailureMode.FIRST_INVOCATION_FAILS);
     }
 
     public MockitoPlusStubbing<T> failAlternatingInvocations() {
-        return withFailureMode(FailureMode.FAIL_ALTERNATING_INVOCATIONS);
+        return failureMode(FailureMode.FAIL_ALTERNATING_INVOCATIONS);
     }
 
     public MockitoPlusStubbing<T> intermittentFailures() {
-        return withFailureMode(FailureMode.INTERMITTENT_FAILURES);
+        return failureMode(FailureMode.INTERMITTENT_FAILURES);
     }
 
     public MockitoPlusStubbing<T> exception(final ExceptionFactory factory) {
@@ -52,7 +51,7 @@ public class MockitoPlusStubbing<T> {
         return this;
     }
 
-    private MockitoPlusStubbing<T> withFailureMode(final FailureMode mode) {
+    public MockitoPlusStubbing<T> failureMode(final FailureMode mode) {
         failureMode.set(mode);
         return this;
     }

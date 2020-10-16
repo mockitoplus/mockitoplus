@@ -1,4 +1,4 @@
-package io.github.mockitoplus.internal;
+package io.github.mockitoplus;
 
 public enum FailureMode {
     FIRST_INVOCATION_FAILS,
