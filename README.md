@@ -2,7 +2,7 @@
 
 MockitoPlus Java library
 
-# Usage
+# Maven usage
 
 ```
 <dependency>
