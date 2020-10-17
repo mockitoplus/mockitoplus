@@ -36,22 +36,22 @@ public class MockitoPlusAnswer<T> implements Answer<T> {
             if (n % 2 == 0) {
                 return value;
             } else {
-                onFailure(invocation);
+                failInvocation(invocation);
             }
         } else if (failureMode.get() == FailureMode.FIRST_INVOCATION_FAILS) {
             if (n > 0) {
                 return value;
             } else {
-                onFailure(invocation);
+                failInvocation(invocation);
             }
         } else if (failureMode.get() == FailureMode.INTERMITTENT_FAILURES) {
             if (random.nextDouble() >= 0.1) {
                 return value;
             } else {
-                onFailure(invocation);
+                failInvocation(invocation);
             }
         } else if (failureMode.get() == FailureMode.FAIL_EVERY_INVOCATION) {
-            onFailure(invocation);
+            failInvocation(invocation);
         } else if (failureMode.get() == FailureMode.NEVER_FAIL) {
             return value;
         } else {
@@ -60,7 +60,7 @@ public class MockitoPlusAnswer<T> implements Answer<T> {
         return value;
     }
 
-    private void onFailure(final InvocationOnMock handler) throws Exception {
+    private void failInvocation(final InvocationOnMock handler) throws Exception {
         throw exceptionFactory.get().createException();
     }
 }
