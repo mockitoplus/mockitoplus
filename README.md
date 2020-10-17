@@ -9,6 +9,7 @@ MockitoPlus Java library
     <groupId>io.github.mockitoplus</groupId>
     <artifactId>mockitoplus</artifactId>
     <version>USE-LATEST-VERSION</version>
+    <scope>test</scope>
 </dependency>
 
 ```
