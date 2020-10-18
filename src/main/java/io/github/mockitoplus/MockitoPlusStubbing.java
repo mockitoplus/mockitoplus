@@ -30,7 +30,7 @@ public class MockitoPlusStubbing<T> {
     }
 
     public MockitoPlusStubbing<T> thenReturn(final T value) {
-        this.stubbing.thenAnswer(new MockitoPlusAnswer(value, failureMode, exceptionFactory, delayCalc));
+        this.stubbing.thenAnswer(new MockitoPlusAnswer<T>(value, failureMode, exceptionFactory, delayCalc));
         return this;
     }
 
