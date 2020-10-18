@@ -32,7 +32,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
     - name: Build
-      run: ./gradlew clean build jacocoTestReport
+      run: ./gradlew clean build jacocoTestReport jacocoTestCoverageVerification
 
   automerge:
     runs-on: [ubuntu-latest]
