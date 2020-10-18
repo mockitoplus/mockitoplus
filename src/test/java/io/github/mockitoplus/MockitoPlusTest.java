@@ -197,6 +197,17 @@ public class MockitoPlusTest {
         assertThat(successCount + failureCount).isEqualTo(numIterations);
     }
 
+    @Test
+    public void testToString() {
+        HelloWorld hello = mock(HelloWorld.class);
+
+        assertThat(when(hello.sayHello(any()))
+                .thenReturn("abc123")
+                .toString())
+                .isNotNull()
+                .isNotEmpty();
+    }
+
     private static void assertFailure(final Callable callable) {
         assertThatCode(() -> callable.call())
                 .isInstanceOf(GenericException.class)
