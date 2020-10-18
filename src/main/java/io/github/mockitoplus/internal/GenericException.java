@@ -1,7 +1,8 @@
 package io.github.mockitoplus.internal;
 
-/* internal exception class */
 public final class GenericException extends Exception {
+    private static final long serialVersionUID = 1L;
+
     public GenericException() {
         super("generic exception");
     }

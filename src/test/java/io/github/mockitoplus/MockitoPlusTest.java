@@ -208,13 +208,13 @@ public class MockitoPlusTest {
                 .isNotEmpty();
     }
 
-    private static void assertFailure(final Callable callable) {
+    private static void assertFailure(final Callable<?> callable) {
         assertThatCode(() -> callable.call())
                 .isInstanceOf(GenericException.class)
                 .hasMessage("generic exception");
     }
 
-    private static void assertFailureWithCustomException(final Callable callable) {
+    private static void assertFailureWithCustomException(final Callable<?> callable) {
         assertThatCode(() -> callable.call())
                 .isInstanceOf(CustomException.class)
                 .hasMessage("Things happen");
@@ -225,6 +225,8 @@ public class MockitoPlusTest {
     }
 
     private static class CustomException extends RuntimeException {
+        private static final long serialVersionUID = 1L;
+
         public CustomException(String msg) {
             super(msg);
         }

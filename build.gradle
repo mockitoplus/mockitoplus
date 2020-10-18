@@ -20,7 +20,7 @@ java {
 tasks.withType(JavaCompile) {
   options.deprecation = true
   options.encoding = 'UTF-8'
-  options.compilerArgs += ["-Xlint:unchecked"]
+  options.compilerArgs += ["-Xlint:all", "-Werror"]
 }
 
 dependencies {
