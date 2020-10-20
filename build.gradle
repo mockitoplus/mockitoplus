@@ -24,7 +24,7 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    implementation 'org.mockito:mockito-core:3.5.13'
+    implementation 'org.mockito:mockito-core:3.5.15'
     testImplementation 'org.assertj:assertj-core:3.17.2'
     testImplementation 'org.slf4j:slf4j-api:1.7.30'
     testImplementation 'org.slf4j:slf4j-simple:1.7.30'
