@@ -49,6 +49,8 @@ jacoco {
 
 test {
     useJUnitPlatform()
+    failFast = true
+    maxParallelForks = 4
 }
 
 jacocoTestReport {
