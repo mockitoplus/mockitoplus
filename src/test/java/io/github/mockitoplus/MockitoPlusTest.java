@@ -18,6 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static io.github.mockitoplus.MockitoPlus.when;
 
 public class MockitoPlusTest {
+
     @Test
     public void failAlternatingInvocations() {
         HelloWorld hello = mock(HelloWorld.class);
