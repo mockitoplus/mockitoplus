@@ -171,18 +171,18 @@ public class MockitoPlusTest {
     public void intermittentFailuresWithRandomDelay() {
         HelloWorld hello = mock(HelloWorld.class);
 
-        final Duration max = Duration.of(15, MILLIS);
+        final Duration lowerBound = Duration.of(5, MILLIS);
+        final Duration upperBound = Duration.of(20, MILLIS);
 
         when(hello.sayHello(any()))
                 .thenReturn("abc123")
                 .intermittentFailures()
-                .randomDelay(max);
+                .randomDelay(lowerBound, upperBound);
 
         final int numIterations = 10;
 
         int successCount = 0;
         int failureCount = 0;
-
 
         for (int i = 0; i < numIterations; i++) {
             try {

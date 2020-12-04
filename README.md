@@ -104,12 +104,13 @@ when(hello.sayHello(any()))
 import static org.mockito.Mockito.mock;
 import static io.github.mockitoplus.MockitoPlus.when;
 
-Duration max = Duration.of(5, SECONDS);
+Duration lowerBound = Duration.of(1, SECONDS);
+Duration upperBound = Duration.of(20, SECONDS);
 
 HelloWorld hello = mock(HelloWorld.class);
 
 when(hello.sayHello(any()))
           .thenReturn("bonjour")
-          .randomDelay(max);
+          .randomDelay(lowerBound, upperBound);
 
 ```

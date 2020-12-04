@@ -65,8 +65,8 @@ public class MockitoPlusStubbing<T> {
         return this;
     }
 
-    public MockitoPlusStubbing<T> randomDelay(final Duration maxDelay) {
-        delayCalc.set(new RandomDelay(new SecureRandom(), maxDelay));
+    public MockitoPlusStubbing<T> randomDelay(final Duration lowerBound, final Duration upperBound) {
+        delayCalc.set(new RandomDelay(new SecureRandom(), lowerBound, upperBound));
         return this;
     }
 
