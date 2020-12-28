@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         java: [ '8', '11', '13', '14', '15' ]
-        os: [ 'ubuntu-latest' ]
+        os: [ 'ubuntu-20.04' ]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
       run: ./gradlew clean build jacocoTestReport jacocoTestCoverageVerification
 
   automerge:
-    runs-on: [ubuntu-latest]
+    runs-on: [ubuntu-20.04]
     name: automerge
     needs: [build]
     if: github.base_ref == 'master' && github.actor == 'dependabot[bot]'
