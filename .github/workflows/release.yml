@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
     paths-ignore:
       - '.github/**'
       - 'build.gradle'
@@ -34,7 +34,7 @@ jobs:
       run:  ./gradlew build -s && ./gradlew ciPerformRelease -s
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TRAVIS_BRANCH: master
+        TRAVIS_BRANCH: main
         BINTRAY_USERNAME: ${{ secrets.BINTRAY_USERNAME }}
         BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
         SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
