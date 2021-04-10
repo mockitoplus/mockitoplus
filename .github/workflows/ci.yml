@@ -13,6 +13,7 @@ jobs:
     strategy:
       matrix:
         java: [ '8', '11', '13', '14', '15', '16' ]
+        distribution: [ 'zulu', 'adopt' ]
         os: [ 'ubuntu-20.04' ]
     runs-on: ${{ matrix.os }}
     steps:
@@ -22,7 +23,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
-        distribution: 'zulu'
+        distribution: ${{ matrix.distribution }}
         java-version: ${{ matrix.java }}
     - name: print Java version
       run: java -version
