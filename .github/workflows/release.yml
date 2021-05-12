@@ -19,7 +19,7 @@ jobs:
       with:
         fetch-depth: '0' # will fetch the entire history
     - name: Gradle wrapper validation
-      uses: gradle/wrapper-validation-action@v1
+      uses: gradle/wrapper-validation-action@v1.0.3
     - name: Set up JDK
       uses: actions/setup-java@v2
       with:
