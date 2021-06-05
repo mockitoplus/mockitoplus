@@ -6,7 +6,6 @@ on:
       - main
     paths-ignore:
       - '.github/**'
-      - 'build.gradle'
       - 'docs/**'
       - 'gradle/**'
       - 'README.md'
