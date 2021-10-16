@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         java: [ '8', '11', '13', '14', '15', '16', '17' ]
-        distribution: [ 'zulu', 'adopt' ]
+        distribution: [ 'zulu', 'temurin' ]
         os: [ 'ubuntu-20.04' ]
     runs-on: ${{ matrix.os }}
     steps:
