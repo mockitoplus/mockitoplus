@@ -1,8 +1,6 @@
 plugins {
     id 'jacoco'
     id 'java'
-    id 'maven-publish'
-    id "org.shipkit.java" version "2.3.5"
 }
 
 repositories {
@@ -38,14 +36,6 @@ dependencies {
 
 group = 'io.github.mockitoplus'
 description = 'mockitoplus'
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
 
 jacoco {
     toolVersion = "0.8.6"
