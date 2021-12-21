@@ -31,11 +31,10 @@ jobs:
     - name: Branch name
       run:  echo running on branch ${GITHUB_REF##*/}
     - name: Gradle ciPerformRelease
-      run:  ./gradlew build -s && ./gradlew ciPerformRelease -s
+      run:  ./gradle clean build && ./gradlew publishToSonatype closeAndReleaseStagingRepository githubRelease
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        TRAVIS_BRANCH: main
-        BINTRAY_USERNAME: ${{ secrets.BINTRAY_USERNAME }}
-        BINTRAY_API_KEY: ${{ secrets.BINTRAY_API_KEY }}
-        SONATYPE_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
-        SONATYPE_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
+        NEXUS_TOKEN_USER: ${{ secrets.NEXUS_TOKEN_USER }}
+        NEXUS_TOKEN_PWD: ${{ secrets.NEXUS_TOKEN_PWD }}
+        PGP_KEY: ${{secrets.PGP_KEY}}
+        PGP_PWD: ${{secrets.PGP_PWD}}

@@ -1,47 +1,61 @@
-//This default Shipkit configuration file was created automatically and is intended to be checked-in.
-//Default configuration is sufficient for local testing and trying out Shipkit.
-//To leverage Shipkit fully, please fix the TODO items, refer to our Getting Started Guide for help:
-//
-//     https://github.com/mockito/shipkit/blob/master/docs/getting-started.md
-//
-shipkit {
-    gitHub.repository = "mockitoplus/mockitoplus"
+apply plugin: 'org.shipkit.shipkit-auto-version'
+apply plugin: 'org.shipkit.shipkit-changelog'
+apply plugin: 'org.shipkit.shipkit-github-release'
 
-    gitHub.readOnlyAuthToken = System.getenv("GITHUB_TOKEN") ?: "none"
-
-    gitHub.writeAuthToken = System.getenv("GITHUB_TOKEN") ?: "none"
-
-    ciManagement.url = "https://github.com/mockitoplus/mockitoplus/actions"
-    ciManagement.system = "GitHub Actions"
-
-    team.developers = ['sullis:Sean C. Sullivan']
+tasks.named('generateChangelog') {
+    previousRevision = project.ext.'shipkit-auto-version.previous-tag'
+    githubToken = System.getenv('GITHUB_TOKEN')
+    repository = 'mockitoplus/mockitoplus'
 }
 
-allprojects {
-    plugins.withId("org.shipkit.bintray") {
+tasks.named("githubRelease") {
+    def genTask = tasks.named("generateChangelog").get()
+    dependsOn genTask
+    repository = genTask.repository
+    changelog = genTask.outputFile
+    newTagRevision = System.getenv("GITHUB_SHA")
+    githubToken = System.getenv("GITHUB_TOKEN")
+}
 
-        //Bintray configuration is handled by JFrog Bintray Gradle Plugin
-        //For reference see the official documentation: https://github.com/bintray/gradle-bintray-plugin
-        bintray {
-            user = System.getenv("BINTRAY_USERNAME") ?: "none"
-            key = System.getenv("BINTRAY_API_KEY") ?: "none"
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
+nexusPublishing {
+    repositories {
+        if (System.getenv('NEXUS_TOKEN_PWD')) {
+            sonatype {
+                // Publishing to: https://s01.oss.sonatype.org (faster instance)
+                nexusUrl = uri('https://s01.oss.sonatype.org/service/local/')
+                snapshotRepositoryUrl = uri('https://s01.oss.sonatype.org/content/repositories/snapshots/')
 
-            pkg {
-                repo = 'maven'
-                userOrg = 'mockitoplus'
-                name = 'mockitoplus'
-                licenses = ['Apache-2.0']
-                labels = ['mockito', 'java', 'mocking']
-
-                version {
-                    mavenCentralSync {
-                        sync = true
-                        user = System.getenv("SONATYPE_USERNAME") ?: "none"
-                        password = System.getenv("SONATYPE_PASSWORD") ?: "none"
-                        close = '1'
-                    }
-                }
+                username = System.getenv('NEXUS_TOKEN_USER')
+                password = System.getenv('NEXUS_TOKEN_PWD')
             }
+        }
+    }
+}
+
+def isSnapshot = version.endsWith("-SNAPSHOT")
+if (isSnapshot) {
+    tasks.named("githubRelease") {
+        //snapshot versions do not produce changelog / GitHub releases
+        enabled = false
+    }
+    tasks.named("closeAndReleaseStagingRepository") {
+        //snapshot binaries are available in Sonatype without the need to close the staging repo
+        enabled = false
+    }
+}
+
+tasks.register("releaseSummary") {
+    doLast {
+        if (isSnapshot) {
+            println "RELEASE SUMMARY\n" +
+                "  SNAPSHOTS released to: https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/mockitoplus/mockitoplus\n" +
+                "  Release to Maven Central: SKIPPED FOR SNAPSHOTS\n" +
+                "  Github releases: SKIPPED FOR SNAPSHOTS"
+        } else {
+            println "RELEASE SUMMARY\n" +
+                "  Release to Maven Central (available in few hours): https://repo1.maven.org/maven2/io/github/mockitoplus/mockitoplus/\n" +
+                "  Github releases: https://github.com/mockitoplus/mockitoplus/releases"
         }
     }
 }

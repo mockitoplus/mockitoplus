@@ -1,0 +1,113 @@
+group = 'io.github.mockitoplus'
+
+plugins.withId("java") {
+    //Sources/javadoc artifacts required by Maven module publications
+    def licenseSpec = copySpec {
+        from project.rootDir
+        include "LICENSE"
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+        with licenseSpec
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from tasks.javadoc
+        with licenseSpec
+    }
+
+    artifacts {
+        archives sourcesJar
+        archives javadocJar
+    }
+
+    jar {
+        with licenseSpec
+    }
+}
+
+
+tasks.withType(GenerateModuleMetadata) {
+    enabled = false
+}
+
+//Gradle Maven publishing plugin configuration (https://docs.gradle.org/current/userguide/publishing_maven.html)
+apply plugin: "maven-publish"
+publishing {
+    publications {
+        javaLibrary(MavenPublication) {
+            plugins.withId("java") {
+                from components.java
+                artifact sourcesJar
+                artifact javadocJar
+            }
+            plugins.withId("java-platform") {
+                from components.javaPlatform
+            }
+
+            artifactId = project.archivesBaseName
+
+            pom {
+                name = artifactId
+                description = project.description
+
+                plugins.withId("java") {
+                    //Gradle does not write 'jar' packaging to the pom (unlike other packaging types).
+                    //This is OK because 'jar' is implicit/default:
+                    // https://maven.apache.org/guides/introduction/introduction-to-the-pom.html#minimal-pom
+                    packaging = project.tasks.jar.extension
+                }
+
+                url = "https://github.com/mockitoplus/mockitoplus"
+                licenses {
+                    license {
+                        name = 'The MIT License'
+                        url = 'https://github.com/mockitoplus/mockitoplus/blob/main/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+                developers {
+                    ['sullis:Sean Sullivan'].each { devData ->
+                        developer {
+                            def devInfo = devData.split(':')
+                            id = devInfo[0]
+                            name = devInfo[1]
+                            url = 'https://github.com/' + devInfo[0]
+                            roles = ["Core developer"]
+                        }
+                    }
+                }
+                scm {
+                    url = 'https://github.com/mockitoplus/mockitoplus.git'
+                }
+                issueManagement {
+                    url = 'https://github.com/mockitoplus/mockitoplus/issues'
+                    system = 'GitHub issues'
+                }
+                ciManagement {
+                    url = 'https://github.com/mockitoplus/mockitoplus/actions'
+                    system = 'GH Actions'
+                }
+            }
+        }
+    }
+
+    //useful for testing - running "publish" will create artifacts/pom in a local dir
+    repositories { maven { url = "$buildDir/repo" } }
+}
+
+plugins.withId("java") {
+//fleshes out problems with Maven pom generation when building
+    tasks.build.dependsOn("publishJavaLibraryPublicationToMavenLocal")
+}
+
+apply plugin: 'signing' //https://docs.gradle.org/current/userguide/signing_plugin.html
+signing {
+    if (System.getenv('PGP_KEY')) {
+        useInMemoryPgpKeys(System.getenv('PGP_KEY'), System.getenv('PGP_PWD'))
+        sign publishing.publications.javaLibrary
+    }
+}
