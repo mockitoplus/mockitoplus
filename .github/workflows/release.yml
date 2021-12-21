@@ -31,7 +31,7 @@ jobs:
     - name: Branch name
       run:  echo running on branch ${GITHUB_REF##*/}
     - name: Gradle ciPerformRelease
-      run:  ./gradle clean build && ./gradlew publishToSonatype closeAndReleaseStagingRepository githubRelease
+      run:  ./gradlew clean build && ./gradlew publishToSonatype closeAndReleaseStagingRepository githubRelease
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NEXUS_TOKEN_USER: ${{ secrets.NEXUS_TOKEN_USER }}
