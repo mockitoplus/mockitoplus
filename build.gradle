@@ -3,6 +3,8 @@ plugins {
     id 'java'
 }
 
+apply from: 'gradle/shipkit.gradle'
+
 repositories {
     mavenLocal()
     maven {
