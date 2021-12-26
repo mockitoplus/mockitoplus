@@ -22,9 +22,8 @@ nexusPublishing {
     repositories {
         if (System.getenv('NEXUS_TOKEN_PWD')) {
             sonatype {
-                // Publishing to: https://s01.oss.sonatype.org (faster instance)
-                nexusUrl = uri('https://s01.oss.sonatype.org/service/local/')
-                snapshotRepositoryUrl = uri('https://s01.oss.sonatype.org/content/repositories/snapshots/')
+                nexusUrl = uri('https://oss.sonatype.org/service/local/')
+                snapshotRepositoryUrl = uri('https://oss.sonatype.org/content/repositories/snapshots/')
 
                 username = System.getenv('NEXUS_TOKEN_USER')
                 password = System.getenv('NEXUS_TOKEN_PWD')
@@ -49,7 +48,7 @@ tasks.register("releaseSummary") {
     doLast {
         if (isSnapshot) {
             println "RELEASE SUMMARY\n" +
-                "  SNAPSHOTS released to: https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/mockitoplus/mockitoplus\n" +
+                "  SNAPSHOTS released to: https://oss.sonatype.org/content/repositories/snapshots/io/github/mockitoplus/mockitoplus\n" +
                 "  Release to Maven Central: SKIPPED FOR SNAPSHOTS\n" +
                 "  Github releases: SKIPPED FOR SNAPSHOTS"
         } else {
