@@ -1,6 +1,7 @@
 apply plugin: 'org.shipkit.shipkit-auto-version'
 apply plugin: 'org.shipkit.shipkit-changelog'
 apply plugin: 'org.shipkit.shipkit-github-release'
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
 
 tasks.named('generateChangelog') {
     previousRevision = project.ext.'shipkit-auto-version.previous-tag'
@@ -17,7 +18,6 @@ tasks.named("githubRelease") {
     githubToken = System.getenv("GITHUB_TOKEN")
 }
 
-apply plugin: 'io.github.gradle-nexus.publish-plugin'
 nexusPublishing {
     repositories {
         if (System.getenv('NEXUS_TOKEN_PWD')) {
