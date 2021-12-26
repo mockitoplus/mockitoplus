@@ -44,7 +44,9 @@ jobs:
     needs: [build] # build job must pass before we can release
     steps:
       - name: print github.event_name
-        run:  echo github.event_name: ${{ github.event_name }}
+        run: echo "github.event_name $EVENT_NAME"
+        env:
+          EVENT_NAME: ${{github.event_name}}
       - name: Release to Sonatype
         # Release job, only for pushes to the main development branch
         if: github.event_name == 'push'
