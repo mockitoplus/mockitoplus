@@ -64,7 +64,7 @@ publishing {
                 url = "https://github.com/mockitoplus/mockitoplus"
                 licenses {
                     license {
-                        name = 'The MIT License'
+                        name = 'Apache License version 2.0'
                         url = 'https://github.com/mockitoplus/mockitoplus/blob/main/LICENSE'
                         distribution = 'repo'
                     }
