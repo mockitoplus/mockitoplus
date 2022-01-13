@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         java: [ '8', '11',  '17' ]
-        jdk: [ 'zulu', 'temurin', 'microsoft' ]
+        jdk: [ 'zulu', 'temurin' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     name: Java ${{ matrix.java }} JDK ${{ matrix.jdk }}
