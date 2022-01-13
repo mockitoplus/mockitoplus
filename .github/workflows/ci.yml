@@ -17,7 +17,13 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java: [ '8', '11',  '17' ]
+        jdk: [ 'zulu', 'temurin', 'microsoft' ]
+        os: [ 'ubuntu-latest' ]
+    runs-on: ${{ matrix.os }}
+    name: Java ${{ matrix.java }} JDK ${{ matrix.jdk }}
     if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
     steps:
       - name: Check out code
@@ -31,8 +37,8 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
-          java-version: 8
-          distribution: 'zulu'
+          java-version: ${{ matrix.java }}
+          distribution: ${{ matrix.jdk }}
 
       - name: Gradle build
         run: ./gradlew build
