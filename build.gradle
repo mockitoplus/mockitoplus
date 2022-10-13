@@ -15,6 +15,7 @@ plugins {
     id 'java'
     id "java-library"
     id "maven-publish"
+    id "org.openrewrite.rewrite" version "5.30.0"
 }
 
 apply from: 'gradle/shipkit.gradle'
@@ -83,4 +84,17 @@ publishing {
             from(components.java)
         }
     }
+}
+
+dependencies {
+    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:1.10.0"))
+    rewrite("org.openrewrite.recipe:rewrite-testing-frameworks")
+    rewrite("org.openrewrite.recipe:rewrite-logging-frameworks")
+}
+
+rewrite {
+    activeRecipe("org.openrewrite.java.testing.junit5.JUnit5BestPractices")
+    activeRecipe("org.openrewrite.java.logging.slf4j.ParameterizedLogging")
+    activeRecipe("org.openrewrite.java.logging.slf4j.LoggersNamedForEnclosingClass")
+    activeRecipe("org.openrewrite.java.logging.slf4j.Slf4jLogShouldBeConstant")
 }
