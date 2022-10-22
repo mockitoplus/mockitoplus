@@ -19,7 +19,7 @@ jobs:
   build:
     strategy:
       matrix:
-        java: [ '8', '11',  '17', '18' ]
+        java: [ '8', '11',  '17', '18', '19' ]
         jdk: [ 'zulu', 'temurin' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
