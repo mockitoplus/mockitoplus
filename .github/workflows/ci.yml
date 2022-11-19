@@ -41,7 +41,7 @@ jobs:
           distribution: ${{ matrix.jdk }}
 
       - name: Gradle build
-        run: ./gradlew build
+        run: ./gradlew rewriteDryRun build
 
   #
   # Release job, only for pushes to the main development branch
