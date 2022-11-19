@@ -94,7 +94,5 @@ dependencies {
 
 rewrite {
     activeRecipe("org.openrewrite.java.testing.junit5.JUnit5BestPractices")
-    activeRecipe("org.openrewrite.java.logging.slf4j.ParameterizedLogging")
-    activeRecipe("org.openrewrite.java.logging.slf4j.LoggersNamedForEnclosingClass")
-    activeRecipe("org.openrewrite.java.logging.slf4j.Slf4jLogShouldBeConstant")
+    activeRecipe("org.openrewrite.java.logging.slf4j.Slf4jBestPractices")
 }
