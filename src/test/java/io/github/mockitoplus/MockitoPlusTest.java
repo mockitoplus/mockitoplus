@@ -17,10 +17,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.ArgumentMatchers.any;
 import static io.github.mockitoplus.MockitoPlus.when;
 
-public class MockitoPlusTest {
+class MockitoPlusTest {
 
     @Test
-    public void failAlternatingInvocations() {
+    void failAlternatingInvocations() {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
@@ -31,19 +31,19 @@ public class MockitoPlusTest {
         assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
 
         // second invocation: failure
-        assertFailure( () -> hello.sayHello("whatever"));
+        assertFailure(() -> hello.sayHello("whatever"));
 
         // third invocation: success
         assertThat(hello.sayHello("whatever")).isEqualTo("abc123");
 
         // fourth invocation: failure
-        assertFailure( () -> hello.sayHello("whatever"));
+        assertFailure(() -> hello.sayHello("whatever"));
 
         verify(hello, times(4)).sayHello(any());
     }
 
     @Test
-    public void failAlternatingInvocations_withCustomException() {
+    void failAlternatingInvocations_withCustomException() {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
@@ -55,19 +55,19 @@ public class MockitoPlusTest {
         assertThat(hello.sayHello("whatever")).isEqualTo("bonjour");
 
         // second invocation: failure
-        assertFailureWithCustomException( () -> hello.sayHello("whatever"));
+        assertFailureWithCustomException(() -> hello.sayHello("whatever"));
 
         // third invocation: success
         assertThat(hello.sayHello("whatever")).isEqualTo("bonjour");
 
         // fourth invocation: failure
-        assertFailureWithCustomException( () -> hello.sayHello("whatever"));
+        assertFailureWithCustomException(() -> hello.sayHello("whatever"));
 
         verify(hello, times(4)).sayHello(any());
     }
 
     @Test
-    public void firstInvocationFails() {
+    void firstInvocationFails() {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
@@ -88,7 +88,7 @@ public class MockitoPlusTest {
     }
 
     @Test
-    public void failEveryInvocation() {
+    void failEveryInvocation() {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
@@ -105,7 +105,7 @@ public class MockitoPlusTest {
     }
 
     @Test
-    public void intermittentFailures() {
+    void intermittentFailures() {
         HelloWorld hello = mock(HelloWorld.class);
 
         when(hello.sayHello(any()))
@@ -118,12 +118,12 @@ public class MockitoPlusTest {
         int failureCount = 0;
 
         for (int i = 0; i < numIterations; i++) {
-          try {
-              hello.sayHello("whatever");
-              successCount++;
-          } catch (Exception ex) {
-              failureCount++;
-          }
+            try {
+                hello.sayHello("whatever");
+                successCount++;
+            } catch (Exception ex) {
+                failureCount++;
+            }
         }
 
         assertThat(successCount).isGreaterThanOrEqualTo(0);
@@ -132,7 +132,7 @@ public class MockitoPlusTest {
     }
 
     @Test
-    public void intermittentFailuresWithFixedDelay() {
+    void intermittentFailuresWithFixedDelay() {
         HelloWorld hello = mock(HelloWorld.class);
 
         final Duration delay = Duration.of(7, MILLIS);
@@ -168,7 +168,7 @@ public class MockitoPlusTest {
     }
 
     @Test
-    public void intermittentFailuresWithRandomDelay() {
+    void intermittentFailuresWithRandomDelay() {
         HelloWorld hello = mock(HelloWorld.class);
 
         final Duration lowerBound = Duration.of(5, MILLIS);
@@ -199,7 +199,7 @@ public class MockitoPlusTest {
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         HelloWorld hello = mock(HelloWorld.class);
 
         assertThat(when(hello.sayHello(any()))
@@ -222,7 +222,7 @@ public class MockitoPlusTest {
     }
 
     private static Exception createCustomException() {
-      return new CustomException("Things happen");
+        return new CustomException("Things happen");
     }
 
     private static class CustomException extends RuntimeException {
