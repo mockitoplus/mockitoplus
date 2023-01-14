@@ -19,7 +19,7 @@ jobs:
   build:
     strategy:
       matrix:
-        java: [ '8', '11',  '17', '19' ]
+        java: [ '11',  '17', '19' ]
         jdk: [ 'zulu', 'temurin' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
@@ -61,7 +61,7 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
-          java-version: 8
+          java-version: 11
           distribution: 'zulu'
 
       - name: Release to Sonatype
