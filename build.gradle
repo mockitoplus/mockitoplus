@@ -15,7 +15,7 @@ plugins {
     id 'java'
     id "java-library"
     id "maven-publish"
-    id "org.openrewrite.rewrite" version "5.38.2"
+    id "org.openrewrite.rewrite" version "5.39.0"
 }
 
 apply from: 'gradle/shipkit.gradle'
