@@ -87,7 +87,7 @@ publishing {
 }
 
 dependencies {
-    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.0.5"))
+    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.0.6"))
     rewrite("org.openrewrite.recipe:rewrite-testing-frameworks")
     rewrite("org.openrewrite.recipe:rewrite-logging-frameworks")
 }
