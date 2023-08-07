@@ -99,7 +99,7 @@ publishing {
 
 plugins.withId("java") {
 //fleshes out problems with Maven pom generation when building
-    tasks.build.dependsOn("publishJavaLibraryPublicationToMavenLocal")
+//    tasks.build.dependsOn("publishJavaLibraryPublicationToMavenLocal")
 }
 
 apply plugin: 'signing' //https://docs.gradle.org/current/userguide/signing_plugin.html
