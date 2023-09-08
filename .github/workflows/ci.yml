@@ -73,7 +73,7 @@ jobs:
           && github.repository == 'mockitoplus/mockitoplus'
           && !contains(toJSON(github.event.commits.*.message), '[skip release]')
 
-        run: ./gradlew clean build githubRelease publishToSonatype closeAndReleaseStagingRepository
+        run: ./gradlew clean build githubRelease publishToSonatype closeAndReleaseStagingRepository --stacktrace
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           NEXUS_TOKEN_USER: ${{secrets.SONATYPE_USER}}
