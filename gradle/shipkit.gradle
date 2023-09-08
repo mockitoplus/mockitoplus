@@ -1,12 +1,15 @@
 apply plugin: 'org.shipkit.shipkit-auto-version'
 apply plugin: 'org.shipkit.shipkit-changelog'
 apply plugin: 'org.shipkit.shipkit-github-release'
-apply plugin: 'io.github.gradle-nexus.publish-plugin'
 
 tasks.named('generateChangelog') {
     previousRevision = project.ext.'shipkit-auto-version.previous-tag'
     githubToken = System.getenv('GITHUB_TOKEN')
     repository = 'mockitoplus/mockitoplus'
+    // Workarounds for https://github.com/shipkit/shipkit-changelog/issues/103
+    doNotTrackState("GenerateChangelogTask tracks the entire repo, which results is locking problems hashing the .gradle folder.")
+    // GenerateChangelogTask uses the entire repo as input, which means it needs to "depend on" all other tasks' outputs.
+    mustRunAfter(allprojects.collectMany { it.tasks }.grep { it.path != ":generateChangelog" && it.path != ":githubRelease" })
 }
 
 tasks.named("githubRelease") {
@@ -18,10 +21,15 @@ tasks.named("githubRelease") {
     githubToken = System.getenv("GITHUB_TOKEN")
 }
 
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
 nexusPublishing {
     repositories {
         if (System.getenv('NEXUS_TOKEN_PWD')) {
             sonatype {
+                // Publishing to: https://s01.oss.sonatype.org (faster instance)
+                nexusUrl = uri('https://s01.oss.sonatype.org/service/local/')
+                snapshotRepositoryUrl = uri('https://s01.oss.sonatype.org/content/repositories/snapshots/')
+
                 username = System.getenv('NEXUS_TOKEN_USER')
                 password = System.getenv('NEXUS_TOKEN_PWD')
             }
@@ -45,19 +53,13 @@ tasks.register("releaseSummary") {
     doLast {
         if (isSnapshot) {
             println "RELEASE SUMMARY\n" +
-                "  SNAPSHOTS released to: https://oss.sonatype.org/content/repositories/snapshots/io/github/mockitoplus/mockitoplus\n" +
+                "  SNAPSHOTS released to: https://s01.oss.sonatype.org/content/repositories/snapshots/io.github.mockitoplus/mockitoplus\n" +
                 "  Release to Maven Central: SKIPPED FOR SNAPSHOTS\n" +
                 "  Github releases: SKIPPED FOR SNAPSHOTS"
         } else {
             println "RELEASE SUMMARY\n" +
-                "  Release to Maven Central (available in few hours): https://repo1.maven.org/maven2/io/github/mockitoplus/mockitoplus/\n" +
+                "  Release to Maven Central (available in few hours): https://repo1.maven.org/maven2/io.github.mockitoplus/mockitoplus/\n" +
                 "  Github releases: https://github.com/mockitoplus/mockitoplus/releases"
         }
-    }
-}
-
-allprojects { p ->
-    plugins.withId("java") {
-        p.apply from: "$rootDir/gradle/java-publication.gradle"
     }
 }
