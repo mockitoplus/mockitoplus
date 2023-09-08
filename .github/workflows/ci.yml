@@ -47,6 +47,8 @@ jobs:
   # Release job, only for pushes to the main development branch
   #
   release:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     needs: [build] # build job must pass before we can release
     steps:
