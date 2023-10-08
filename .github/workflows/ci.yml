@@ -19,8 +19,8 @@ jobs:
   build:
     strategy:
       matrix:
-        java: [ '11',  '17', '20', '21-ea' ]
-        jdk: [ 'temurin' ]
+        java: [ '11',  '17', '21' ]
+        jdk: [ 'zulu' ]
         os: [ 'ubuntu-latest' ]
     runs-on: ${{ matrix.os }}
     name: Java ${{ matrix.java }} ${{ matrix.jdk }}
