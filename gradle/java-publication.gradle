@@ -8,11 +8,13 @@ plugins.withId("java") {
     }
 
     task sourcesJar(type: Jar, dependsOn: classes) {
+        archiveClassifier = 'sources'
         from sourceSets.main.allSource
         with licenseSpec
     }
 
     task javadocJar(type: Jar, dependsOn: javadoc) {
+        archiveClassifier = 'javadoc'
         from tasks.javadoc
         with licenseSpec
     }
@@ -22,7 +24,7 @@ plugins.withId("java") {
         archives javadocJar
     }
 
-    jar {
+    tasks.named("jar", Jar) {
         with licenseSpec
     }
 }
