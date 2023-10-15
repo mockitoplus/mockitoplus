@@ -122,8 +122,8 @@ when(hello.sayHello(any()))
 2. In order to release a non-snapshot version to Maven Central push an annotated tag, for example:
 
 ```
-git tag -a -m "Release 0.6.0" v0.6.0
-git push origin v0.6.0
+git tag -a -m "Release 0.x.y" v0.x.y
+git push origin v0.x.y
 ```
 
 3. At the moment, you **may not create releases from GitHub Web UI**. Doing so will make the CI build fail because the
