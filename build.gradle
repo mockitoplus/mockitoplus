@@ -30,8 +30,6 @@ repositories {
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
-    // withSourcesJar()
-    // withJavadocJar()
 }
 
 tasks.withType(JavaCompile) {
@@ -61,14 +59,14 @@ dependencies {
 group = 'io.github.mockitoplus'
 description = 'mockitoplus'
 
-jacoco {
-    toolVersion = "0.8.7"
-}
-
 test {
     useJUnitPlatform()
     failFast = true
     maxParallelForks = 5
+}
+
+jacoco {
+    toolVersion = "0.8.7"
 }
 
 jacocoTestReport {
