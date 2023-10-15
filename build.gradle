@@ -85,14 +85,6 @@ jacocoTestCoverageVerification {
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
-
 rewrite {
     failOnDryRunResults = true
     activeRecipe("org.openrewrite.java.testing.junit5.JUnit5BestPractices")
