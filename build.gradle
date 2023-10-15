@@ -18,6 +18,7 @@ plugins {
     id "org.openrewrite.rewrite" version "6.3.18"
 }
 
+apply from: 'gradle/java-publication.gradle'
 apply from: 'gradle/shipkit.gradle'
 
 repositories {
