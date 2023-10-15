@@ -41,8 +41,8 @@ publishing {
         javaLibrary(MavenPublication) {
             plugins.withId("java") {
                 from components.java
-                artifact sourcesJar
-                artifact javadocJar
+                artifact tasks.named("sourcesJar")
+                artifact tasks.named("javadocJar")
             }
             plugins.withId("java-platform") {
                 from components.javaPlatform
