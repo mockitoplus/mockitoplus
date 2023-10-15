@@ -14,7 +14,6 @@ plugins {
     id 'jacoco'
     id 'java'
     id "java-library"
-    id "maven-publish"
     id "org.openrewrite.rewrite" version "6.3.18"
 }
 
