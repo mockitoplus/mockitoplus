@@ -210,13 +210,13 @@ class MockitoPlusTest {
     }
 
     private static void assertFailure(final Callable<?> callable) {
-        assertThatCode(() -> callable.call())
+        assertThatCode(callable::call)
                 .isInstanceOf(GenericException.class)
                 .hasMessage("generic exception");
     }
 
     private static void assertFailureWithCustomException(final Callable<?> callable) {
-        assertThatCode(() -> callable.call())
+        assertThatCode(callable::call)
                 .isInstanceOf(CustomException.class)
                 .hasMessage("Things happen");
     }
