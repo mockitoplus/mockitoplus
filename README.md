@@ -118,7 +118,7 @@ when(hello.sayHello(any()))
 ## How to release a new version?
 
 1. Every change on the main development branch is released as `-SNAPSHOT` version to Sonatype snapshot repo
-   at https://s01.oss.sonatype.org/content/repositories/snapshots/io/github/
+   at https://oss.sonatype.org/content/repositories/snapshots/io/github/mockitoplus/mockitoplus/
 2. In order to release a non-snapshot version to Maven Central push an annotated tag, for example:
 
 ```
