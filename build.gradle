@@ -14,7 +14,7 @@ plugins {
     id 'jacoco'
     id 'java'
     id "java-library"
-    id "org.openrewrite.rewrite" version "6.4.0"
+    id "org.openrewrite.rewrite" version "6.6.0"
 }
 
 apply from: 'gradle/java-publication.gradle'
