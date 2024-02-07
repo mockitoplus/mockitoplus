@@ -39,7 +39,7 @@ if (isSnapshot) {
         //snapshot versions do not produce changelog / GitHub releases
         enabled = false
     }
-    tasks.named("closeAndReleaseStagingRepository") {
+    tasks.named("closeAndReleaseStagingRepositories") {
         //snapshot binaries are available in Sonatype without the need to close the staging repo
         enabled = false
     }
