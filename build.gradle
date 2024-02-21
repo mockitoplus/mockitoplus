@@ -52,7 +52,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation "org.junit.jupiter:junit-jupiter"
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.6.4"))
+    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.7.1"))
     rewrite("org.openrewrite.recipe:rewrite-testing-frameworks")
     rewrite("org.openrewrite.recipe:rewrite-logging-frameworks")
 }
