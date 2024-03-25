@@ -48,3 +48,4 @@ classes
 .gradletasknamecache
 *.log
 !gradle-wrapper.jar
+!gradle/wrapper/*.jar
