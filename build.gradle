@@ -14,7 +14,6 @@ plugins {
     id 'jacoco'
     id 'java'
     id "java-library"
-    id "org.openrewrite.rewrite" version "6.10.0"
 }
 
 apply from: 'gradle/java-publication.gradle'
@@ -52,9 +51,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation "org.junit.jupiter:junit-jupiter"
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.8.0"))
-    rewrite("org.openrewrite.recipe:rewrite-testing-frameworks")
-    rewrite("org.openrewrite.recipe:rewrite-logging-frameworks")
 }
 
 group = 'io.github.mockitoplus'
@@ -82,10 +78,4 @@ jacocoTestCoverageVerification {
             }
         }
     }
-}
-
-rewrite {
-    failOnDryRunResults = true
-    activeRecipe("org.openrewrite.java.testing.junit5.JUnit5BestPractices")
-    activeRecipe("org.openrewrite.java.logging.slf4j.Slf4jBestPractices")
 }
