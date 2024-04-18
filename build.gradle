@@ -42,11 +42,13 @@ tasks.withType(Javadoc) {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
 
+def slf4jVersion = '2.0.13'
+
 dependencies {
     implementation 'org.mockito:mockito-core:5.11.0'
     testImplementation 'org.assertj:assertj-core:3.25.3'
-    testImplementation 'org.slf4j:slf4j-api:1.7.36'
-    testImplementation 'org.slf4j:slf4j-simple:1.7.36'
+    testImplementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    testImplementation "org.slf4j:slf4j-simple:${slf4jVersion}"
     testImplementation(platform("org.junit:junit-bom:5.10.2"))
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation "org.junit.jupiter:junit-jupiter"
