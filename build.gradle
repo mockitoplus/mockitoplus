@@ -42,7 +42,7 @@ tasks.withType(Javadoc) {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-def slf4jVersion = '2.0.14'
+def slf4jVersion = '2.0.15'
 
 dependencies {
     implementation 'org.mockito:mockito-core:5.12.0'
