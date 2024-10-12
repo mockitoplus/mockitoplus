@@ -1,0 +1,8 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.github.mockitoplus.internal.InternalBestPractices
+displayName: mockitoplus internal recipe
+description: mockitoplus internal recipe
+recipeList:
+  - org.openrewrite.java.logging.slf4j.Slf4jBestPractices
+  - org.openrewrite.java.testing.junit5.JUnit5BestPractices
