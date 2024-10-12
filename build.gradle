@@ -60,6 +60,7 @@ dependencies {
     rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.21.0"))
     rewrite("org.openrewrite.recipe:rewrite-logging-frameworks")
     rewrite("org.openrewrite.recipe:rewrite-testing-frameworks")
+    rewrite("org.openrewrite.recipe:rewrite-migrate-java")
 }
 
 group = 'io.github.mockitoplus'
