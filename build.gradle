@@ -57,7 +57,7 @@ dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter"
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
-    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:2.21.0"))
+    rewrite(platform("org.openrewrite.recipe:rewrite-recipe-bom:latest.release"))
     rewrite("org.openrewrite.recipe:rewrite-logging-frameworks")
     rewrite("org.openrewrite.recipe:rewrite-testing-frameworks")
     rewrite("org.openrewrite.recipe:rewrite-migrate-java")
