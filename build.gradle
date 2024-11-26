@@ -27,8 +27,15 @@ repositories {
 }
 
 enforce {
+
     rule(enforcer.rules.BanDuplicateClasses) { r ->
       r.ignoreClasses.addAll([ "**/package-info"])
+    }
+
+    rule(enforcer.rules.BannedDependencies) { r ->
+      r.excludes.addAll(
+          [ "javax.annotation:javax.annotation-api",
+            "jakarta.annotation:jakarta.annotation-api"] )
     }
 }
 
