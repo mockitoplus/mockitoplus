@@ -42,7 +42,7 @@ jobs:
           cache: 'gradle'
 
       - name: Gradle build
-        run: ./gradlew build
+        run: ./gradlew check build
 
   #
   # Release job, only for pushes to the main development branch
