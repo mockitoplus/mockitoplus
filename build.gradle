@@ -25,7 +25,6 @@ apply from: 'gradle/java-publication.gradle'
 apply from: 'gradle/shipkit.gradle'
 
 repositories {
-    mavenLocal()
     mavenCentral()
 }
 
