@@ -21,7 +21,7 @@ jobs:
       matrix:
         java: [ '11',  '17', '21', '23' ]
         jdk: [ 'temurin' ]
-        os: [ 'ubuntu-latest' ]
+        os: [ 'ubuntu-latest', 'ubuntu-22.04-arm' ]
     runs-on: ${{ matrix.os }}
     name: Java ${{ matrix.java }} ${{ matrix.os }}
     if: "! contains(toJSON(github.event.commits.*.message), '[skip ci]')"
