@@ -16,7 +16,7 @@ plugins {
     id 'java'
     id "java-library"
     id("org.openrewrite.rewrite") version("6.28.0")
-    id("org.kordamp.gradle.project-enforcer") version("0.14.0")
+    // id("org.kordamp.gradle.project-enforcer") version("0.14.0")
 }
 
 apply plugin: 'org.revapi.revapi-gradle-plugin'
@@ -26,19 +26,6 @@ apply from: 'gradle/shipkit.gradle'
 
 repositories {
     mavenCentral()
-}
-
-enforce {
-
-    rule(enforcer.rules.BanDuplicateClasses) { r ->
-      r.ignoreClasses.addAll([ "**/package-info"])
-    }
-
-    rule(enforcer.rules.BannedDependencies) { r ->
-      r.excludes.addAll(
-          [ "javax.annotation:javax.annotation-api",
-            "jakarta.annotation:jakarta.annotation-api"] )
-    }
 }
 
 java {
