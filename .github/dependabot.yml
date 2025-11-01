@@ -4,7 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "03:38"
+      time: "03:39"
     ignore:
       - dependency-name: "org.openrewrite:*"
       - dependency-name: "org.openrewrite.rewrite:*"
