@@ -114,6 +114,9 @@ when(hello.sayHello(any()))
           .randomDelay(lowerBound, upperBound);
 
 ```
+## Mockito presentations
+
+- [Portland Java User Group 2022-01-25](https://speakerdeck.com/sullis/mockito-2022-01-25)
 
 ## How to release a new version?
 
@@ -128,3 +131,6 @@ git push origin v0.x.y
 
 3. At the moment, you **may not create releases from GitHub Web UI**. Doing so will make the CI build fail because the
    CI creates the changelog and posts to GitHub releases. We'll support this in the future.
+
+
+   
