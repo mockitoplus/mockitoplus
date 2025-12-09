@@ -7,7 +7,7 @@ buildscript {
         classpath 'org.shipkit:shipkit-changelog:2.0.1'
         classpath 'org.shipkit:shipkit-auto-version:2.1.2'
         classpath "io.github.gradle-nexus:publish-plugin:2.0.0"
-        classpath "org.revapi:gradle-revapi:1.8.0"
+        // classpath "org.revapi:gradle-revapi:1.8.0"
     }
 }
 
@@ -19,7 +19,7 @@ plugins {
     // id("org.kordamp.gradle.project-enforcer") version("0.14.0")
 }
 
-apply plugin: 'org.revapi.revapi-gradle-plugin'
+// apply plugin: 'org.revapi.revapi-gradle-plugin'
 
 apply from: 'gradle/java-publication.gradle'
 apply from: 'gradle/shipkit.gradle'
@@ -67,11 +67,13 @@ dependencies {
 group = 'io.github.mockitoplus'
 description = 'mockitoplus'
 
+/*
 revapi {
   oldGroup = "io.github.mockitoplus"
   oldName = "mockitoplus"
   oldVersion = "0.6.0"
 }
+*/
 
 test {
     useJUnitPlatform()
