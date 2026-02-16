@@ -53,7 +53,7 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.27.7'
     testImplementation "org.slf4j:slf4j-api:${slf4jVersion}"
     testImplementation "org.slf4j:slf4j-simple:${slf4jVersion}"
-    testImplementation(platform("org.junit:junit-bom:6.0.2"))
+    testImplementation(platform("org.junit:junit-bom:6.0.3"))
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testImplementation "org.junit.jupiter:junit-jupiter"
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
